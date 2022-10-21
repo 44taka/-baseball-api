@@ -1,1 +1,1 @@
-# -baseball-api
+# baseball-api
