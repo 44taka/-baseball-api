@@ -1,0 +1,17 @@
+FROM python:3.10.6
+
+# 環境変数設定
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV TZ Asia/Tokyo
+
+ENV LOGURU_LEVEL="DEBUG"
+
+RUN mkdir /app
+COPY requirements.txt /app/
+
+RUN pip install --upgrade pip
+RUN pip uninstall -r /app/requirements.txt
+RUN pip install -r /app/requirements.txt
+
+WORKDIR /app
