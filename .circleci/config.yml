@@ -7,13 +7,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: check node version
+          name: Install caprover cli
           command: | 
-            node --version
+            npm install -g caprover
       - run:
-          name: check npm version
+          name: Check caprover version
           command: | 
-            npm -v
+            caprover --version
 
 workflows:
   Deploy:
