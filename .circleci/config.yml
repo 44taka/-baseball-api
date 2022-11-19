@@ -9,11 +9,11 @@ jobs:
       - run:
           name: Install caprover cli
           command: | 
-            npm install -g caprover
+            sudo npm install -g caprover
       - run:
           name: Check caprover version
           command: | 
-            caprover --version
+            sudo caprover --version
 
 workflows:
   Deploy:
