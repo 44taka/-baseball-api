@@ -11,9 +11,9 @@ jobs:
           command: | 
             sudo npm install -g caprover
       - run:
-          name: Check caprover version
+          name: Caprover deploy
           command: | 
-            sudo caprover --version
+            sudo caprover deploy -h ${CAPROVER_URL} -p ${CAPROVER_PASSWORD} -b ${CAPROVER_APP_NAME} -a
 
 workflows:
   Deploy:
