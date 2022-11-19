@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: cimg/node:18.12.1
+    steps:
+      - checkout
+      - run:
+          name: Install caprover cli
+          command: | 
+            sudo npm install -g caprover
+      - run:
+          name: Caprover deploy
+          command: | 
+            sudo caprover deploy -h ${CAPROVER_URL} -p ${CAPROVER_PASSWORD} -b ${CAPROVER_BRANCH} -a ${CAPROVER_APP_NAME}
+
+workflows:
+  Deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
