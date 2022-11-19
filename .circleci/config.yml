@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Caprover deploy
           command: | 
-            sudo caprover deploy -h ${CAPROVER_URL} -p ${CAPROVER_PASSWORD} -b ${CAPROVER_APP_NAME} -a
+            sudo caprover deploy -h ${CAPROVER_URL} -p ${CAPROVER_PASSWORD} -b ${CAPROVER_BRANCH} -a ${CAPROVER_APP_NAME}
 
 workflows:
   Deploy:
