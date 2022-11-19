@@ -1,0 +1,31 @@
+FROM python:3.10.6
+
+# 変数
+ARG MYSQL_HOST=${MYSQL_HOST}
+ARG MYSQL_DATABASE=${MYSQL_DATABASE}
+ARG MYSQL_USER=${MYSQL_USER}
+ARG MYSQL_PASSWORD=${MYSQL_PASSWORD}
+ARG MYSQL_CA=${MYSQL_CA}
+ARG API_ENV=${API_ENV}
+
+# 環境変数設定
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV TZ Asia/Tokyo
+ENV LOGURU_LEVEL="INFO"
+ENV MYSQL_HOST=${MYSQL_HOST}
+ENV MYSQL_DATABASE=${MYSQL_DATABASE}
+ENV MYSQL_USER=${MYSQL_USER}
+ENV MYSQL_PASSWORD=${MYSQL_PASSWORD}
+ENV MYSQL_CA=${MYSQL_CA}
+ENV API_ENV=${API_ENV}
+
+RUN mkdir /app
+COPY requirements.txt /app/
+
+RUN pip install --upgrade pip
+RUN pip uninstall -r /app/requirements.txt
+RUN pip install -r /app/requirements.txt
+
+WORKDIR /app
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
